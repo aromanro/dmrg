@@ -11,7 +11,7 @@ namespace DMRG {
 			Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver;
 		public:
 			DiagonalizableOperator(unsigned int size = 2, bool extendChangeSign = false);
-			~DiagonalizableOperator();
+			virtual ~DiagonalizableOperator();
 
 			void Diagonalize();
 			const Eigen::MatrixXd& eigenvectors() const { return solver.eigenvectors(); }
