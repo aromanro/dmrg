@@ -221,7 +221,7 @@ BEGIN
     EDITTEXT        IDC_EDIT2,103,89,40,14,ES_AUTOHSCROLL | ES_NUMBER
     RTEXT           "Number of sweeps:",IDC_STATIC,17,110,80,8
     EDITTEXT        IDC_EDIT3,103,108,40,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "it will round up to an even value",IDC_STATIC,149,93,103,8
+    LTEXT           "it will round up to an even value",IDC_STATIC,149,74,103,8
 END
 
 IDD_PROPPAGE_CHART DIALOGEX 0, 0, 237, 79
