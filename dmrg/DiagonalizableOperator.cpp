@@ -26,7 +26,9 @@ namespace DMRG {
 			// the SelfAdjointEigenSolver diagonalization from Eigen takes care of those
 			// for another solver, sorting needs to be done afterwards
 
-			matrix = eigenvalues().asDiagonal();
+			// no need to switch it to diagonal in this program
+			// for nrg I used it, here is not necessary
+			//matrix = eigenvalues().asDiagonal();
 		}
 
 
