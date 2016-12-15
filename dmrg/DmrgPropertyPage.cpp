@@ -57,6 +57,7 @@ void CDmrgPropertyPage::ApplyValues()
 {
 	theApp.options.model = model;
 	theApp.options.sites = sites;
+	if (theApp.options.sites % 2) ++theApp.options.sites;
 	theApp.options.states = states;
 	theApp.options.sweeps = sweeps;
 
