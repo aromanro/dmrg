@@ -13,8 +13,8 @@ namespace DMRG {
 			bool changeSign;
 			int singleSiteSize;
 		public:
-			// extendChangeSign should be true for fermionic operators
-			// false for bosonic operators - not implemented yet
+			// extendChangeSign should be true for fermionic operators (not implemented yet)
+			// false for bosonic operators
 			Operator(unsigned int size = 2, bool extendChangeSign = false);
 			virtual ~Operator();
 
