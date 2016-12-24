@@ -184,7 +184,7 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> double GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::CalculateInfinite(int chainLength)
 	{
-		if (chainLength % 2) --chainLength;
+		if (chainLength % 2) ++chainLength;
 		if (chainLength <= 0) return std::numeric_limits<double>::infinity();
 
 		ClearInit();
@@ -203,7 +203,7 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> double GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::CalculateFinite(int chainLength, int numSweeps)
 	{
-		if (chainLength % 2) --chainLength;
+		if (chainLength % 2) ++chainLength;
 		if (chainLength <= 0) return std::numeric_limits<double>::infinity();
 
 		ClearInit();
@@ -216,6 +216,8 @@ namespace DMRG {
 
 		double result = 0;
 
+		// infinite size algorithm
+
 		AddToRepository(systemBlock->length, systemBlock, systemBlocksRepository);
 		AddToRepository(environmentBlock->length, environmentBlock, environmentBlocksRepository);
 
@@ -226,6 +228,9 @@ namespace DMRG {
 			AddToRepository(systemBlock->length, systemBlock, systemBlocksRepository);
 			AddToRepository(environmentBlock->length, environmentBlock, environmentBlocksRepository);
 		}
+
+
+		// finite size algorithm
 
 		bool left = false;
 		finiteAlgorithm = true;
