@@ -8,6 +8,10 @@
 
 #include "Options.h"
 
+#include "dmrgDoc.h"
+#include "MainFrm.h"
+#include "dmrgView.h"
+
 
 // CChartPropertyPage dialog
 
@@ -69,6 +73,15 @@ void CChartPropertyPage::ApplyValues()
 	theApp.options.maxEnergy = maxEnergy;
 
 	theApp.options.Save();
+
+	CMainFrame *frm = (CMainFrame*)theApp.m_pMainWnd;
+	if (frm)
+	{
+		CdmrgDoc* doc = frm->GetDocument();
+		doc->SetYAxisRange();
+		CdmrgView* view = doc->GetView();
+		if (view) view->Invalidate();
+	}
 }
 
 

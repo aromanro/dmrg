@@ -20,7 +20,6 @@ public:
 public:
 
 protected:
-	CdmrgDoc* GetDocument();
 
 
 // Overrides
@@ -52,6 +51,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
+	CdmrgDoc* GetDocument();
+
+
 	afx_msg void OnViewOptions();
 	afx_msg void OnFileCalculate();
 	afx_msg void OnUpdateFileCalculate(CCmdUI *pCmdUI);

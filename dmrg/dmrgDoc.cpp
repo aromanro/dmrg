@@ -199,12 +199,11 @@ void CdmrgDoc::UpdateChartData()
 	m_Chart.SetNumTicksX(theApp.options.bigTicksX * theApp.options.smallTicksX);
 	m_Chart.SetNumTicksY(theApp.options.bigTicksY * theApp.options.smallTicksY);
 
-	m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, spinStr, result / chainLength);
-
-	m_Chart.YAxisMin = theApp.options.minEnergy;
-	m_Chart.YAxisMax = theApp.options.maxEnergy;
+	m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, spinStr, result / chainLength);	
 
 	m_Chart.XAxisMax = (int)x.size() + 1;
+
+	SetYAxisRange();
 }
 
 
@@ -241,4 +240,11 @@ void CdmrgDoc::StartComputing()
 		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOne>(theApp.options.sites, theApp.options.sweeps, theApp.options.states);
 
 	thread->Start();
+}
+
+
+void CdmrgDoc::SetYAxisRange()
+{
+	m_Chart.YAxisMin = theApp.options.minEnergy;
+	m_Chart.YAxisMax = theApp.options.maxEnergy;
 }

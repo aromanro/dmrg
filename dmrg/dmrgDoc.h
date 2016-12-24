@@ -59,4 +59,5 @@ public:
 	void UpdateChartData();
 	CdmrgView* GetView();
 	void StartComputing();
+	void SetYAxisRange();
 };
