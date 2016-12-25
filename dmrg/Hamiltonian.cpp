@@ -16,10 +16,12 @@ namespace DMRG {
 			int basisSize = (int)matrix.cols();
 			int enlargeBasis = (int)siteHamiltonian.matrix.cols();
 
+			DiagonalizableOperator::Extend(left);
+
 			if (left)
-				matrix = Operator::IdentityKronecker(enlargeBasis, matrix) + Operator::KroneckerProductWithIdentity(siteHamiltonian.matrix, basisSize);
+				matrix += Operator::KroneckerProductWithIdentity(siteHamiltonian.matrix, basisSize);
 			else
-				matrix = Operator::KroneckerProductWithIdentity(matrix, enlargeBasis) + Operator::IdentityKronecker(basisSize, siteHamiltonian.matrix);
+				matrix += Operator::IdentityKronecker(basisSize, siteHamiltonian.matrix);
 				
 			matrix += interactionHamiltonian.matrix;
 		}
