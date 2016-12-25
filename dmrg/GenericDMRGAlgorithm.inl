@@ -80,13 +80,12 @@ namespace DMRG {
 		// ******************* Measurement operators ********************************************************
 
 		// this assumes that all operators are for the system block - this toy program only deals with such operators
-		for (auto& op : operators)
-			op.Extend();
-
+		for (auto& op : operators) op.Extend();
 
 		if (addInteractionOperator)
 		{
 			Operators::Hamiltonian interaction = systemBlock->GetInteractionHamiltonian();
+			
 			operators.push_back(interaction);
 		}
 
