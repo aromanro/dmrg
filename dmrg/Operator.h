@@ -20,7 +20,7 @@ namespace DMRG {
 
 			Eigen::MatrixXd matrix;
 
-			void Extend();
+			void Extend(bool left = true);
 
 			int GetSingleSiteSize() const { return singleSiteSize; }
 

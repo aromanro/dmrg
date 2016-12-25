@@ -18,9 +18,12 @@ namespace DMRG {
 		}
 
 
-		void Operator::Extend()
+		void Operator::Extend(bool left)
 		{
-			matrix = IdentityKronecker(singleSiteSize, matrix);
+			if (left)
+				matrix = IdentityKronecker(singleSiteSize, matrix);
+			else
+				matrix = KroneckerProductWithIdentity(matrix, singleSiteSize);
 		}
 
 	}
