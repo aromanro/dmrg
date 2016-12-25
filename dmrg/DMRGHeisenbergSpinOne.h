@@ -14,7 +14,6 @@ namespace DMRG {
 		{
 		public:
 			DMRGHeisenbergSpinOne(unsigned int maxstates = 10);
-			virtual ~DMRGHeisenbergSpinOne();
 		};
 
 	}

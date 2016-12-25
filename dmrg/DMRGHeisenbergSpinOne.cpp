@@ -10,9 +10,5 @@ namespace DMRG {
 		{
 		}
 
-
-		DMRGHeisenbergSpinOne::~DMRGHeisenbergSpinOne()
-		{
-		}
 	}
 }

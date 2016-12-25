@@ -81,7 +81,6 @@ namespace DMRG {
 
 		// this assumes that all operators are for the system block - this toy program only deals with such operators
 		for (auto& op : operators)
-			//op.matrix = Operators::Operator::IdentityKronecker(systemBlock->hamiltonian.GetSingleSiteSize(), op.matrix);
 			op.Extend();
 
 

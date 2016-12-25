@@ -10,10 +10,5 @@ namespace DMRG {
 		{
 		}
 
-
-		DMRGHeisenbergSpinOneHalf::~DMRGHeisenbergSpinOneHalf()
-		{
-		}
-
 	}
 }
