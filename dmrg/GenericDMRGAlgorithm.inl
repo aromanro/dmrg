@@ -174,7 +174,7 @@ namespace DMRG {
 
 		TRACE("Truncation Error: %f\n", truncationError);
 
-		Eigen::MatrixXd U = Ut.adjoint();
+		const Eigen::MatrixXd U = Ut.adjoint();
 
 		TransformOperators(U, Ut);
 
