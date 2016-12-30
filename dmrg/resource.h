@@ -5,6 +5,7 @@
 #define IDD_ABOUTBOX                    100
 #define IDD_PROPPAGE_DMRG               106
 #define IDD_PROPPAGE_CHART              107
+#define IDD_PROPPAGE_HEISENBERG         108
 #define ID_STATUSBAR_PANE1              120
 #define ID_STATUSBAR_PANE2              121
 #define IDS_STATUS_PANE1                122
@@ -44,7 +45,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_RESOURCE_VALUE        315
 #define _APS_NEXT_COMMAND_VALUE         32773
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           310

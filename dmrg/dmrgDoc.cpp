@@ -235,9 +235,9 @@ void CdmrgDoc::StartComputing()
 	}
 
 	if (0 == theApp.options.model)
-		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOneHalf>(theApp.options.sites, theApp.options.sweeps, theApp.options.states);
+		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOneHalf>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states);
 	else
-		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOne>(theApp.options.sites, theApp.options.sweeps, theApp.options.states);
+		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOne>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states);
 
 	thread->Start();
 }

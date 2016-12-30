@@ -9,6 +9,7 @@
 #include "OptionsPropertySheet.h"
 #include "DmrgPropertyPage.h"
 #include "ChartPropertyPage.h"
+#include "HeisenbergPropertyPage.h"
 
 #include "dmrgDoc.h"
 
@@ -320,10 +321,12 @@ void CMainFrame::OnViewOptions()
 	COptionsPropertySheet sheet(L"Options", this);
 
 	CDmrgPropertyPage page1;
-	CChartPropertyPage page2;
+	CHeisenbergPropertyPage page2;
+	CChartPropertyPage page3;
 
 	sheet.AddPage(&page1);
 	sheet.AddPage(&page2);
+	sheet.AddPage(&page3);
 
 	sheet.DoModal();
 }

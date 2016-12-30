@@ -5,9 +5,11 @@
 namespace DMRG {
 	namespace Heisenberg {
 
-		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::HeisenbergDMRGAlgorithm(unsigned int maxstates)
-			: GenericDMRGAlgorithm(maxstates)
+		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::HeisenbergDMRGAlgorithm(double Jz, double Jxy, unsigned int maxstates)
+			: GenericDMRGAlgorithm(maxstates), m_Jz(Jz), m_Jxy(Jxy)
 		{
+			systemBlock->m_Jz = environmentBlock->m_Jz = m_Jz;
+			systemBlock->m_Jxy = environmentBlock->m_Jxy = m_Jxy;
 		}
 
 
@@ -15,13 +17,20 @@ namespace DMRG {
 		{
 		}
 
+		template<class SiteHamiltonianType, class SzType, class SplusType> void HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::ClearInit()
+		{
+			GenericDMRGAlgorithm<SiteHamiltonianType, HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>>::ClearInit();
+
+			systemBlock->m_Jz = environmentBlock->m_Jz = m_Jz;
+			systemBlock->m_Jxy = environmentBlock->m_Jxy = m_Jxy;
+		}
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> Operators::Hamiltonian HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::GetInteractionHamiltonian() const
 		{
 			Operators::Hamiltonian interactionHamiltonian;
 
-			interactionHamiltonian.matrix = Operators::Operator::KroneckerProduct(environmentBlock->SzForBoundarySite.matrix, systemBlock->SzForBoundarySite.matrix) +
-				1. / 2. * (Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix, systemBlock->SplusForBoundarySite.matrix.adjoint()) +
+			interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(environmentBlock->SzForBoundarySite.matrix, systemBlock->SzForBoundarySite.matrix) +
+				1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix, systemBlock->SplusForBoundarySite.matrix.adjoint()) +
 					Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix.adjoint(), systemBlock->SplusForBoundarySite.matrix));
 
 			return interactionHamiltonian;

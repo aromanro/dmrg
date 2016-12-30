@@ -19,6 +19,9 @@ public:
 	double minEnergy;
 	double maxEnergy;
 
+	double Jz;
+	double Jxy;
+
 	void Load();
 	void Save();
 protected:

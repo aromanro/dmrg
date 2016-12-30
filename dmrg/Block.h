@@ -19,6 +19,9 @@ namespace DMRG {
 			static SzType SzForNewSite;
 			static SplusType SplusForNewSite;
 
+			double m_Jz;
+			double m_Jxy;
+
 			virtual Operators::Hamiltonian GetInteractionHamiltonian() const;
 			virtual void Extend();
 		};

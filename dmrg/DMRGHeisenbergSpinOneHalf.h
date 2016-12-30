@@ -12,7 +12,7 @@ namespace DMRG {
 			public HeisenbergDMRGAlgorithm<Operators::Hamiltonian, Operators::SzOneHalf, Operators::SplusOneHalf>
 		{
 		public:
-			DMRGHeisenbergSpinOneHalf(unsigned int maxstates = 18);
+			DMRGHeisenbergSpinOneHalf(double Jz = 1., double Jxy = 1., unsigned int maxstates = 18);
 		};
 	}
 }

@@ -31,7 +31,7 @@ namespace DMRG {
 
 		virtual Operators::Hamiltonian GetInteractionHamiltonian() const = 0;
 
-		void ClearInit();
+		virtual void ClearInit();
 		void AddToRepository(int index, BlockType* what, std::map<int, std::unique_ptr<BlockType>> *repository);
 		void CopySystemBlockToEnvironment();
 
@@ -42,8 +42,10 @@ namespace DMRG {
 		void CalculateResults();
 
 		static double LanczosGroundState(const Operators::Hamiltonian& hamiltonian, Eigen::VectorXd& groundState);
-	public:
+	
 		GenericDMRGAlgorithm(unsigned int maxstates = 10);
+	
+	public:
 		virtual ~GenericDMRGAlgorithm();
 
 		double truncationError;

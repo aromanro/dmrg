@@ -11,7 +11,8 @@ Options::Options()
 	smallTicksX(2),
 	smallTicksY(2),
 	minEnergy(-0.7),
-	maxEnergy(-0.2)
+	maxEnergy(-0.2),
+	Jz(1.), Jxy(1.)
 {
 }
 
@@ -51,6 +52,9 @@ void Options::Load()
 
 	minEnergy = GetDouble(L"minEnergy", -0.7);
 	maxEnergy = GetDouble(L"maxEnergy", -0.2);
+
+	Jz = GetDouble(L"Jz", 1.);
+	Jxy = GetDouble(L"Jxy", 1.);
 }
 
 void Options::Save()
@@ -67,4 +71,7 @@ void Options::Save()
 
 	theApp.WriteProfileBinary(L"options", L"minEnergy", (LPBYTE)&minEnergy, sizeof(double));
 	theApp.WriteProfileBinary(L"options", L"maxEnergy", (LPBYTE)&maxEnergy, sizeof(double));
+
+	theApp.WriteProfileBinary(L"options", L"Jz", (LPBYTE)&Jz, sizeof(double));
+	theApp.WriteProfileBinary(L"options", L"Jxy", (LPBYTE)&Jxy, sizeof(double));
 }

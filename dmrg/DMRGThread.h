@@ -14,7 +14,7 @@ public:
 	Algorithm dmrg;
 
 
-	DMRGThread(int sites, int sweeps = 4, int states = 10);
+	DMRGThread(int sites, double Jz = 1., double Jxy = 1., int sweeps = 4, int states = 10);
 	virtual ~DMRGThread();
 };
 

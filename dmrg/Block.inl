@@ -10,6 +10,7 @@ namespace DMRG {
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::HeisenbergBlock(bool Left)
 			: GenericBlock(Left)
+			, m_Jz(1.), m_Jxy(1.)
 		{
 		}
 
@@ -18,21 +19,20 @@ namespace DMRG {
 		{
 		}
 
-
 		template<class SiteHamiltonianType, class SzType, class SplusType> Operators::Hamiltonian HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::GetInteractionHamiltonian() const
 		{
 			Operators::Hamiltonian interactionHamiltonian(hamiltonian.GetSingleSiteSize());
 
 			if (left)
 			{
-				interactionHamiltonian.matrix = Operators::Operator::KroneckerProduct(SzForNewSite.matrix, SzForBoundarySite.matrix) +
-					1. / 2. * (Operators::Operator::KroneckerProduct(SplusForNewSite.matrix, SplusForBoundarySite.matrix.adjoint()) +
+				interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(SzForNewSite.matrix, SzForBoundarySite.matrix) +
+					1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForNewSite.matrix, SplusForBoundarySite.matrix.adjoint()) +
 						Operators::Operator::KroneckerProduct(SplusForNewSite.matrix.adjoint(), SplusForBoundarySite.matrix));
 			}
 			else
 			{
-				interactionHamiltonian.matrix = Operators::Operator::KroneckerProduct(SzForBoundarySite.matrix, SzForNewSite.matrix) +
-					1. / 2. * (Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix, SplusForNewSite.matrix.adjoint()) +
+				interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(SzForBoundarySite.matrix, SzForNewSite.matrix) +
+					1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix, SplusForNewSite.matrix.adjoint()) +
 						Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix.adjoint(), SplusForNewSite.matrix));
 			}
 

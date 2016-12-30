@@ -15,9 +15,16 @@ namespace DMRG {
 			virtual void TransformOperators(const Eigen::MatrixXd& U, const Eigen::MatrixXd& Ut, bool left = true);
 
 			//typedef typename HeisenbergBlock<SiteHamiltonianType, SzType, SplusType> BlockType;
+
+			double m_Jz;
+			double m_Jxy;
+
+			HeisenbergDMRGAlgorithm(double Jz = 1., double Jxy = 1., unsigned int maxstates = 10);
+
 		public:
-			HeisenbergDMRGAlgorithm(unsigned int maxstates = 10);
 			virtual ~HeisenbergDMRGAlgorithm();
+
+			virtual void ClearInit();
 		};
 	}
 }

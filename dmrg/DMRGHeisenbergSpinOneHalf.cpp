@@ -5,8 +5,8 @@
 namespace DMRG {
 	namespace Heisenberg {
 
-		DMRGHeisenbergSpinOneHalf::DMRGHeisenbergSpinOneHalf(unsigned int maxstates)
-			: HeisenbergDMRGAlgorithm<Operators::Hamiltonian, Operators::SzOneHalf, Operators::SplusOneHalf>(maxstates)
+		DMRGHeisenbergSpinOneHalf::DMRGHeisenbergSpinOneHalf(double Jz, double Jxy, unsigned int maxstates)
+			: HeisenbergDMRGAlgorithm<Operators::Hamiltonian, Operators::SzOneHalf, Operators::SplusOneHalf>(Jz, Jxy, maxstates)
 		{
 		}
 

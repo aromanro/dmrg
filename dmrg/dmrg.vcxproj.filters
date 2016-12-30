@@ -108,6 +108,9 @@
     <ClInclude Include="ChartPropertyPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HeisenbergPropertyPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -168,6 +171,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChartPropertyPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HeisenbergPropertyPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
