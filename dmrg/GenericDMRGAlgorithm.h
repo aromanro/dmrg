@@ -14,6 +14,8 @@ namespace DMRG {
 	{
 	protected:
 		bool finiteAlgorithm;
+		bool oddSites;
+
 		bool addInteractionOperator;
 
 		unsigned int maxStates;

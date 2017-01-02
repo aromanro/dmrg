@@ -14,7 +14,6 @@ namespace DMRG {
 		void Hamiltonian::Extend(const Hamiltonian& siteHamiltonian, const Hamiltonian& interactionHamiltonian, bool left)
 		{
 			int basisSize = (int)matrix.cols();
-			int enlargeBasis = (int)siteHamiltonian.matrix.cols();
 
 			DiagonalizableOperator::Extend(left);
 

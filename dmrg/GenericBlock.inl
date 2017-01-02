@@ -15,10 +15,13 @@ namespace DMRG {
 	}
 
 	template<class SiteHamiltonianType> void GenericBlock<SiteHamiltonianType>::Extend()
-	{		
-		Operators::Hamiltonian interactionHamiltonian = GetInteractionHamiltonian();
-		
-		hamiltonian.Extend(SiteHamiltonian, interactionHamiltonian, left);
+	{	
+		if (0 != length)
+		{
+			Operators::Hamiltonian interactionHamiltonian = GetInteractionHamiltonian();
+
+			hamiltonian.Extend(SiteHamiltonian, interactionHamiltonian, left);
+		}
 
 		++length;
 	}

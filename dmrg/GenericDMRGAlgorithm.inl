@@ -12,11 +12,9 @@
 namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::GenericDMRGAlgorithm(unsigned int maxstates)
-		: finiteAlgorithm(false), addInteractionOperator(false), maxStates(maxstates), systemBlock(nullptr), environmentBlock(nullptr), systemBlocksRepository(nullptr), environmentBlocksRepository(nullptr),
+		: finiteAlgorithm(false), oddSites(false), addInteractionOperator(false), maxStates(maxstates), systemBlock(nullptr), environmentBlock(nullptr), systemBlocksRepository(nullptr), environmentBlocksRepository(nullptr),
 		truncationError(0)
 	{
-		systemBlock = new BlockType();
-		environmentBlock = new BlockType();
 	}
 
 
@@ -31,11 +29,18 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> void GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::ClearInit()
 	{
+		delete systemBlocksRepository;
+		delete environmentBlocksRepository;
+
+		systemBlocksRepository = environmentBlocksRepository = nullptr;
+
 		delete systemBlock;
 		delete environmentBlock;
 
 		systemBlock = new BlockType();
 		environmentBlock = new BlockType();
+
+		if (oddSites) environmentBlock->length = 0;
 
 		results.clear();
 		operators.clear();
@@ -118,7 +123,14 @@ namespace DMRG {
 		// a simple copy is enough for this toy program
 		// one might need to construct the right block too, depending on the model
 		// if mirror symmetry does not exist
-		if (!finiteAlgorithm) CopySystemBlockToEnvironment();
+		if (!finiteAlgorithm) {
+			if (oddSites)
+			{
+				int key = systemBlock->length - 1;
+				*environmentBlock = *((*systemBlocksRepository)[key]);
+			}
+			else CopySystemBlockToEnvironment();
+		}
 
 		unsigned int SysBasisSize = (unsigned int)systemBlock->hamiltonian.matrix.cols();
 		unsigned int EnvBasisSize = (unsigned int)environmentBlock->hamiltonian.matrix.cols();
@@ -186,6 +198,8 @@ namespace DMRG {
 		if (chainLength % 2) ++chainLength;
 		if (chainLength <= 0) return std::numeric_limits<double>::infinity();
 
+		oddSites = false;
+
 		ClearInit();
 
 		finiteAlgorithm = false;
@@ -202,8 +216,10 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> double GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::CalculateFinite(int chainLength, int numSweeps)
 	{
-		if (chainLength % 2) ++chainLength;
+		//if (chainLength % 2) ++chainLength;
 		if (chainLength <= 0) return std::numeric_limits<double>::infinity();
+
+		if (chainLength % 2) oddSites = true;
 
 		ClearInit();
 
@@ -218,9 +234,9 @@ namespace DMRG {
 		// infinite size algorithm
 
 		AddToRepository(systemBlock->length, systemBlock, systemBlocksRepository);
-		AddToRepository(environmentBlock->length, environmentBlock, environmentBlocksRepository);
+		if (environmentBlock->length) AddToRepository(environmentBlock->length, environmentBlock, environmentBlocksRepository);
 
-		for (int i = 0; 2 * systemBlock->length < chainLength; ++i)
+		for (int i = 0; systemBlock->length + environmentBlock->length < chainLength; ++i)
 		{
 			result = Step(i);
 
@@ -234,11 +250,12 @@ namespace DMRG {
 		bool left = false;
 		finiteAlgorithm = true;
 
+		int step = 0;
 		for (int i = 0; i < numSweeps; ++i)
 		{
 			TRACE("SWEEP NUMBER %d\n", i);
 
-			for (int step = 0;; ++step)
+			for (;; ++step)
 			{
 				int key = chainLength - systemBlock->length - 1;
 
@@ -266,7 +283,7 @@ namespace DMRG {
 
 				AddToRepository(systemBlock->length, systemBlock, systemBlocksRepository);				
 
-				if (!left && systemBlock->length == chainLength / 2) break;
+				if (!left && systemBlock->length == (chainLength + 1) / 2) break;
 			}
 		}
 

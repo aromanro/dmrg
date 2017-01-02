@@ -8,8 +8,6 @@ namespace DMRG {
 		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::HeisenbergDMRGAlgorithm(double Jz, double Jxy, unsigned int maxstates)
 			: GenericDMRGAlgorithm(maxstates), m_Jz(Jz), m_Jxy(Jxy)
 		{
-			systemBlock->m_Jz = environmentBlock->m_Jz = m_Jz;
-			systemBlock->m_Jxy = environmentBlock->m_Jxy = m_Jxy;
 		}
 
 
