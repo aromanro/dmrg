@@ -44,8 +44,8 @@ void CDmrgPropertyPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT5, nrStates);
 
 	DDV_MinMaxInt(pDX, sites, 4, 400);
-	DDV_MinMaxInt(pDX, states, 10, 40);
-	DDV_MinMaxInt(pDX, sweeps, 1, 10);
+	DDV_MinMaxInt(pDX, states, 10, 50);
+	DDV_MinMaxInt(pDX, sweeps, 1, 12);
 	DDV_MinMaxInt(pDX, nrStates, 1, 9);
 }
 

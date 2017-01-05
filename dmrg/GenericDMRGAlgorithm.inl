@@ -172,6 +172,8 @@ namespace DMRG {
 		// *****************************************************************************************************************
 		// code for calculating the energy gap, ignore it if you are only interested in the ground state!!!!!!
 		// an example on how to calculate excited states
+		// another method would be to simply change LanczosGroundState to return 'nrStates' lowest states instead of only
+		// the ground state - should be less accurate than the method used here, but much faster
 
 		if (nrStates)
 		{
