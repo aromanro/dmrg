@@ -196,31 +196,36 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+IDD_ABOUTBOX DIALOGEX 0, 0, 123, 53
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About dmrg"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
-    LTEXT           "dmrg, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2016",IDC_STATIC,42,26,114,8
-    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+    LTEXT           "dmrg, Version 1.0",IDC_STATIC,42,14,73,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,66,32,50,14,WS_GROUP
 END
 
-IDD_PROPPAGE_DMRG DIALOGEX 0, 0, 151, 129
+IDD_PROPPAGE_DMRG DIALOGEX 0, 0, 385, 199
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "DMRG"
 FONT 8, "MS Shell Dlg", 400, 0, 0x0
 BEGIN
-    GROUPBOX        "Model",IDC_STATIC,7,7,137,56
+    GROUPBOX        "Model",IDC_STATIC,7,7,371,56
     CONTROL         "Heisenberg Chain Spin 1/2",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,19,103,10
     CONTROL         "Heisenberg Chain Spin 1",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,17,38,103,10
     RTEXT           "Number of sites:",IDC_STATIC,17,72,80,8
-    EDITTEXT        IDC_EDIT1,103,70,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT1,101,70,40,14,ES_AUTOHSCROLL | ES_NUMBER
     RTEXT           "Number of kept states:",IDC_STATIC,17,91,80,8
-    EDITTEXT        IDC_EDIT2,103,89,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT2,101,89,40,14,ES_AUTOHSCROLL | ES_NUMBER
     RTEXT           "Number of sweeps:",IDC_STATIC,17,110,80,8
-    EDITTEXT        IDC_EDIT3,103,108,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT3,101,108,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Calculate energy gap",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,174,72,84,10
+    RTEXT           "Number of states to target besides ground state:",IDC_STATIC,171,90,164,8
+    EDITTEXT        IDC_EDIT5,339,87,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Enter 1 for the first excited state above the ground state. For the spin 1/2 Heisenberg chain there is no gap in the infinite length limit, the gap is ~1/L. For the spin 1 Heisenberg chain, please enter 4.",IDC_STATIC,169,107,209,37
+    LTEXT           "Besides the ground state there is a triplet due edge excitations (open boundary conditions), the Haldane gap is above it, between state 3 and 4 (ground state is number zero).",IDC_STATIC,7,146,371,21
+    LTEXT           "Number of keps states must be increased in order to have accuracy for calculating more states than the ground state.",IDC_STATIC,7,168,371,24
 END
 
 IDD_PROPPAGE_CHART DIALOGEX 0, 0, 237, 79
@@ -302,17 +307,17 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 163
+        RIGHTMARGIN, 116
         TOPMARGIN, 7
-        BOTTOMMARGIN, 55
+        BOTTOMMARGIN, 46
     END
 
     IDD_PROPPAGE_DMRG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 144
+        RIGHTMARGIN, 378
         TOPMARGIN, 7
-        BOTTOMMARGIN, 122
+        BOTTOMMARGIN, 192
     END
 
     IDD_PROPPAGE_CHART, DIALOG
@@ -350,6 +355,11 @@ BEGIN
 END
 
 IDD_PROPPAGE_HEISENBERG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

@@ -19,6 +19,9 @@ public:
 	double minEnergy;
 	double maxEnergy;
 
+	bool calculateEnergyGap;
+	int nrStates;
+
 	double Jz;
 	double Jxy;
 

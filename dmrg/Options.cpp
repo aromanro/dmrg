@@ -12,7 +12,9 @@ Options::Options()
 	smallTicksY(2),
 	minEnergy(-0.7),
 	maxEnergy(-0.2),
-	Jz(1.), Jxy(1.)
+	Jz(1.), Jxy(1.), 
+	calculateEnergyGap(false),
+	nrStates(1)
 {
 }
 
@@ -55,6 +57,10 @@ void Options::Load()
 
 	Jz = GetDouble(L"Jz", 1.);
 	Jxy = GetDouble(L"Jxy", 1.);
+
+	calculateEnergyGap = (1 == theApp.GetProfileInt(L"options", L"calculateEnergyGap", 0) ? true : false);
+
+	nrStates = theApp.GetProfileInt(L"options", L"nrStates", 1);
 }
 
 void Options::Save()
@@ -74,4 +80,7 @@ void Options::Save()
 
 	theApp.WriteProfileBinary(L"options", L"Jz", (LPBYTE)&Jz, sizeof(double));
 	theApp.WriteProfileBinary(L"options", L"Jxy", (LPBYTE)&Jxy, sizeof(double));
+
+	theApp.WriteProfileInt(L"options", L"calculateEnergyGap", calculateEnergyGap ? 1 : 0);
+	theApp.WriteProfileInt(L"options", L"nrStates", nrStates);
 }

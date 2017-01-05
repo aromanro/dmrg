@@ -13,7 +13,7 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::GenericDMRGAlgorithm(unsigned int maxstates)
 		: finiteAlgorithm(false), oddSites(false), addInteractionOperator(false), maxStates(maxstates), systemBlock(nullptr), environmentBlock(nullptr), systemBlocksRepository(nullptr), environmentBlocksRepository(nullptr),
-		truncationError(0)
+		truncationError(0), EnergyGap(0), nrStates(0)
 	{
 	}
 
@@ -29,6 +29,8 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> void GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::ClearInit()
 	{
+		EnergyGap = 0;
+
 		delete systemBlocksRepository;
 		delete environmentBlocksRepository;
 
@@ -163,8 +165,58 @@ namespace DMRG {
 		Operators::DensityMatrix densityMatrix(GroundState, SysBasisSize, EnvBasisSize);
 		densityMatrix.Diagonalize();
 
+		eigenvals = densityMatrix.eigenvalues(); // save them to be able to calculate 'measurements' for the ground state
+
+
+		// *****************************************************************************************************************
+		// *****************************************************************************************************************
+		// code for calculating the energy gap, ignore it if you are only interested in the ground state!!!!!!
+		// an example on how to calculate excited states
+
+		if (nrStates)
+		{
+			double weight = 1. / (1. + nrStates);
+
+			// restore back the density matrix, it was diagonalized
+			densityMatrix.matrix = Operators::DensityMatrix(GroundState, SysBasisSize, EnvBasisSize).matrix;
+
+			Eigen::VectorXd OldState = GroundState;
+			double OldEnergy = GroundStateEnergy;
+
+			for (unsigned int s = 1; s <= nrStates; ++s)
+			{		
+				// shift the Hamiltonian state up with 2. * abs(GroundStateEnergy), this should be enough
+				superblockHamiltonian.matrix += 2. * abs(GroundStateEnergy) * OldState * OldState.adjoint();
+				
+				// get the new ground state after shifting the old one up
+				Eigen::VectorXd ExcitedState;
+				double ExcitedEnergy = LanczosGroundState(superblockHamiltonian, ExcitedState);
+
+				EnergyGap = ExcitedEnergy - OldEnergy;
+
+				// accumulate the density matrix for this state into the algorithm density matrix
+				densityMatrix.matrix += Operators::DensityMatrix(ExcitedState, SysBasisSize, EnvBasisSize).matrix;
+				
+				OldState = ExcitedState;
+				OldEnergy = ExcitedEnergy;
+			}
+
+			// states density matrices are weighted into the 'global' density matrix - the weight is simply 1./nr of targeted states
+			densityMatrix.matrix *= weight;
+
+			// diagonalize it to get the transform operators
+			densityMatrix.Diagonalize();
+		}
+
+
+		// end energy gap part of code
+		// *****************************************************************************************************************
+		// *****************************************************************************************************************
+
+
 		const Eigen::MatrixXd& eigenV = densityMatrix.eigenvectors();
-		eigenvals = densityMatrix.eigenvalues();
+		const Eigen::MatrixXd& eigenv = densityMatrix.eigenvalues();  // for calculating the truncation error
+
 
 		// now pick the ones that have the biggest values
 		// they are ordered with the lowest eigenvalue first
@@ -181,7 +233,7 @@ namespace DMRG {
 			int index = numStates - i - 1;
 			
 			Ut.col(i) = eigenV.col(index);
-			truncationError -= eigenvals(index);
+			truncationError -= eigenv(index);
 		}
 
 		TRACE("Truncation Error: %f\n", truncationError);

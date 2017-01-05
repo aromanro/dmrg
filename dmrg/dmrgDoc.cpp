@@ -175,6 +175,7 @@ void CdmrgDoc::UpdateChartData()
 	}
 
 	double result = thread->result;
+	double gapResult = thread->gapResult;
 
 	delete thread;
 	thread = nullptr;
@@ -199,7 +200,10 @@ void CdmrgDoc::UpdateChartData()
 	m_Chart.SetNumTicksX(theApp.options.bigTicksX * theApp.options.smallTicksX);
 	m_Chart.SetNumTicksY(theApp.options.bigTicksY * theApp.options.smallTicksY);
 
-	m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, spinStr, result / chainLength);	
+	if (options.calculateEnergyGap)
+		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f, Energy Gap: %.5f", chainLength, spinStr, result / chainLength, gapResult);	
+	else
+		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, spinStr, result / chainLength);	
 
 	m_Chart.XAxisMax = (int)x.size() + 1;
 
@@ -235,9 +239,9 @@ void CdmrgDoc::StartComputing()
 	}
 
 	if (0 == theApp.options.model)
-		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOneHalf>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states);
+		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOneHalf>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states, options.calculateEnergyGap ? options.nrStates : 0);
 	else
-		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOne>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states);
+		thread = new DMRGThread<DMRG::Heisenberg::DMRGHeisenbergSpinOne>(options.sites, options.Jz, options.Jxy, options.sweeps, options.states, options.calculateEnergyGap ? options.nrStates : 0);
 
 	thread->Start();
 }

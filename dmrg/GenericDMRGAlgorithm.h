@@ -52,6 +52,9 @@ namespace DMRG {
 
 		double truncationError;
 		std::list<double> results;
+		
+		unsigned int nrStates;
+		double EnergyGap;
 
 		double CalculateInfinite(int chainLength);
 		double CalculateFinite(int chainLength, int numSweeps);

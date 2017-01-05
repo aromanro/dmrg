@@ -4,7 +4,7 @@
 
 
 ComputationThread::ComputationThread()
-	: result(std::numeric_limits<double>::infinity()), terminated(false)
+	: result(std::numeric_limits<double>::infinity()), terminated(false), gapResult(0)
 {
 }
 

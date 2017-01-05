@@ -22,6 +22,11 @@ protected:
 	int states;
 	int sweeps;
 
+	int calcEnergyGap;
+	int nrStates;
+
+	CEdit nrStatesEdit;
+
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
@@ -33,4 +38,7 @@ public:
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnEnChangeEdit2();
 	afx_msg void OnEnChangeEdit3();
+	afx_msg void OnBnClickedCheck1();
+	afx_msg void OnEnChangeEdit5();
+	virtual BOOL OnInitDialog();
 };
