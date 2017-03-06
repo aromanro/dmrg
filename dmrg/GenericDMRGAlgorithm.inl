@@ -217,7 +217,7 @@ namespace DMRG {
 
 
 		const Eigen::MatrixXd& eigenV = densityMatrix.eigenvectors();
-		const Eigen::MatrixXd& eigenv = densityMatrix.eigenvalues();  // for calculating the truncation error
+		const Eigen::VectorXd& eigenv = densityMatrix.eigenvalues();  // for calculating the truncation error
 
 
 		// now pick the ones that have the biggest values
