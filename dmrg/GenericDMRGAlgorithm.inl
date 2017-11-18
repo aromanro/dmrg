@@ -128,14 +128,14 @@ namespace DMRG {
 		if (!finiteAlgorithm) {
 			if (oddSites)
 			{
-				int key = systemBlock->length - 1;
+				const int key = systemBlock->length - 1;
 				*environmentBlock = *((*systemBlocksRepository)[key]);
 			}
 			else CopySystemBlockToEnvironment();
 		}
 
-		unsigned int SysBasisSize = (unsigned int)systemBlock->hamiltonian.matrix.cols();
-		unsigned int EnvBasisSize = (unsigned int)environmentBlock->hamiltonian.matrix.cols();
+		const unsigned int SysBasisSize = static_cast<unsigned int>(systemBlock->hamiltonian.matrix.cols());
+		const unsigned int EnvBasisSize = static_cast<unsigned int>(environmentBlock->hamiltonian.matrix.cols());
 
 		// join the system block and the environment block into the superblock
 		Operators::Hamiltonian superblockHamiltonian = CalculateSuperblock(SysBasisSize, EnvBasisSize);
@@ -150,7 +150,7 @@ namespace DMRG {
 		//Eigen::VectorXd GroundState = superblockHamiltonian.eigenvectors().col(0);
 		//double GroundStateEnergy = superblockHamiltonian.eigenvalues()[0];
 
-		double GroundStateEnergy = LanczosGroundState(superblockHamiltonian, GroundState);
+		const double GroundStateEnergy = LanczosGroundState(superblockHamiltonian, GroundState);
 
 		TRACE(L"Energy/site: %f for system length: %d (Sys: %d, Env: %d) at step: %d\n", GroundStateEnergy / (systemBlock->length + environmentBlock->length), (systemBlock->length + environmentBlock->length), systemBlock->length, environmentBlock->length, step);
 
@@ -177,7 +177,7 @@ namespace DMRG {
 
 		if (nrStates)
 		{
-			double weight = 1. / (1. + nrStates);
+			const double weight = 1. / (1. + nrStates);
 
 			// restore back the density matrix, it was diagonalized
 			densityMatrix.matrix = Operators::DensityMatrix(GroundState, SysBasisSize, EnvBasisSize).matrix;
@@ -192,7 +192,7 @@ namespace DMRG {
 				
 				// get the new ground state after shifting the old one up
 				Eigen::VectorXd ExcitedState;
-				double ExcitedEnergy = LanczosGroundState(superblockHamiltonian, ExcitedState);
+				const double ExcitedEnergy = LanczosGroundState(superblockHamiltonian, ExcitedState);
 
 				EnergyGap = ExcitedEnergy - OldEnergy;
 
@@ -228,7 +228,7 @@ namespace DMRG {
 		// construct the transform matrix from the chosen vectors (the ones with the higher probability)
 		Eigen::MatrixXd Ut(eigenV.rows(), keepStates);
 
-		int numStates = (int)eigenV.cols();
+		const int numStates = static_cast<int>(eigenV.cols());
 		truncationError = 1.; // also calculate the truncation error
 		for (unsigned int i = 0; i < keepStates; ++i)
 		{
@@ -348,7 +348,7 @@ namespace DMRG {
 
 	template<class SiteHamiltonianType, class BlockType> void GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>::CalculateResults()
 	{
-		int eigensize = (int)eigenvals.rows();
+		const int eigensize = static_cast<int>(eigenvals.rows());
 
 		for (auto &op : operators)
 		{
@@ -401,7 +401,7 @@ namespace DMRG {
 		bool diagonalized = false;
 		double GroundEnergy = std::numeric_limits<double>::infinity();
 
-		const int BasisSize = (int)hamiltonian.matrix.cols();
+		const int BasisSize = static_cast<int>(hamiltonian.matrix.cols());
 		int iterLim = BasisSize;
 
 		Eigen::VectorXd Vorig(BasisSize);
@@ -474,7 +474,7 @@ namespace DMRG {
 					solver.computeFromTridiagonal(alpha.head(dim), beta.segment(1, i));
 					Hmatrix.block(0, 0, dim, dim) = solver.eigenvectors();
 
-					double eigenval = solver.eigenvalues()(0);
+					const double eigenval = solver.eigenvalues()(0);
 					if (GroundEnergy - eigenval < PRECISION_LIMIT) {
 						GroundEnergy = eigenval;
 						++i;

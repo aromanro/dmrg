@@ -193,19 +193,20 @@ void CdmrgDoc::UpdateChartData()
 
 	m_Chart.clear();
 
-	m_Chart.AddDataSet(x.data(), y.data(), (int)x.size(), 2, RGB(255,0,0));
+	m_Chart.AddDataSet(x.data(), y.data(), static_cast<int>(x.size()), 2, RGB(255,0,0));
 
 	m_Chart.SetNumBigTicksX(theApp.options.bigTicksX);
 	m_Chart.SetNumBigTicksY(theApp.options.bigTicksY);
 	m_Chart.SetNumTicksX(theApp.options.bigTicksX * theApp.options.smallTicksX);
 	m_Chart.SetNumTicksY(theApp.options.bigTicksY * theApp.options.smallTicksY);
 
-	if (options.calculateEnergyGap)
-		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f, Energy Gap: %.5f", chainLength, spinStr, result / chainLength, gapResult);	
-	else
-		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, spinStr, result / chainLength);	
 
-	m_Chart.XAxisMax = (int)x.size() + 1;
+	if (options.calculateEnergyGap)
+		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f, Energy Gap: %.5f", chainLength, (const wchar_t*)spinStr, result / chainLength, gapResult);	
+	else
+		m_Chart.title.Format(L"L=%d, S=%s, Open BCs, Energy/site: %.5f", chainLength, (const wchar_t*)spinStr, result / chainLength);	
+
+	m_Chart.XAxisMax = static_cast<int>(x.size() + 1);
 
 	SetYAxisRange();
 }
@@ -218,7 +219,7 @@ CdmrgView* CdmrgDoc::GetView()
 	{
 		CView* pView = GetNextView(pos);
 		if (pView->IsKindOf(RUNTIME_CLASS(CdmrgView)))
-			return (CdmrgView*)pView;
+			return dynamic_cast<CdmrgView*>(pView);
 	}
 
 	return NULL;

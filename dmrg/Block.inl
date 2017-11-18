@@ -41,7 +41,7 @@ namespace DMRG {
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> void HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::Extend()
 		{
-			int BasisSize = (int)hamiltonian.matrix.cols();
+			const int BasisSize = static_cast<int>(hamiltonian.matrix.cols());
 
 			GenericBlock::Extend();
 
