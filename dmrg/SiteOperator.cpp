@@ -40,7 +40,7 @@ namespace DMRG {
 			const int subsize = size / 3;
 
 			matrix.block(0, 0, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(2 * subsize, 2 * subsize, subsize, subsize) = -Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(2ULL * subsize, 2ULL * subsize, subsize, subsize) = -Eigen::MatrixXd::Identity(subsize, subsize);
 		}
 
 
@@ -50,7 +50,7 @@ namespace DMRG {
 			const int subsize = size / 3;
 
 			matrix.block(0, subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(subsize, 2 * subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(subsize, 2ULL * subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
 
 			matrix *= sqrt(2.);
 		}

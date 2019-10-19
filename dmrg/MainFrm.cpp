@@ -316,17 +316,18 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 
 void CMainFrame::OnViewOptions()
 {
-	COptionsPropertySheet sheet(L"Options", this);
+	COptionsPropertySheet* sheet = new COptionsPropertySheet(L"Options", this);
 
 	CDmrgPropertyPage page1;
 	CHeisenbergPropertyPage page2;
 	CChartPropertyPage page3;
 
-	sheet.AddPage(&page1);
-	sheet.AddPage(&page2);
-	sheet.AddPage(&page3);
+	sheet->AddPage(&page1);
+	sheet->AddPage(&page2);
+	sheet->AddPage(&page3);
 
-	sheet.DoModal();
+	sheet->DoModal();
+	delete sheet;
 }
 
 

@@ -31,6 +31,7 @@ END_MESSAGE_MAP()
 // CdmrgApp construction
 
 CdmrgApp::CdmrgApp()
+	: gdiplusToken(0), m_nAppLook(0)
 {
 	m_bHiColorIcons = TRUE;
 

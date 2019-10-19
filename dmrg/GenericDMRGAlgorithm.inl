@@ -354,8 +354,8 @@ namespace DMRG {
 		{
 			double result = 0;
 
-			for (int i = 0; i < op.matrix.cols(); ++i)
-				result += op.matrix(i, i) * eigenvals(eigensize - 1 - i);
+			for (Eigen::Index i = 0; i < op.matrix.cols(); ++i)
+				result += op.matrix(i, i) * eigenvals(eigensize - 1ULL - i);
 
 			results.push_back(result);
 		}
@@ -458,12 +458,12 @@ namespace DMRG {
 				v2 = hamiltonian.matrix * v1; // |v2> = H |v1>
 				alpha(i) = v1.adjoint() * v2;  // alpha = <v1|v2>
 				v2 -= alpha(i) * v1 + beta(i) * v0;  // now |v2> =  H |v1> - <v1|v2>|v1> - <v0|v1>|v0>
-				beta(i + 1) = v2.norm();
-				v2 /= beta(i + 1); // normalize it
+				beta(i + 1ULL) = v2.norm();
+				v2 /= beta(i + 1ULL); // normalize it
 
 				// now v2 is orthonormal on both v1 and v0
 
-				if (getEigen) groundState += v2 * Hmatrix(i + 1, 0);
+				if (getEigen) groundState += v2 * Hmatrix(i + 1ULL, 0);
 
 				v0 = v1;
 				v1 = v2;
@@ -491,7 +491,7 @@ namespace DMRG {
 
 				if (!diagonalized)
 				{
-					solver.computeFromTridiagonal(alpha.head(i), beta.segment(1, i - 1));
+					solver.computeFromTridiagonal(alpha.head(i), beta.segment(1, i - 1ULL));
 					Hmatrix.block(0, 0, i, i) = solver.eigenvectors();
 					GroundEnergy = solver.eigenvalues()(0);
 				}

@@ -40,8 +40,8 @@ namespace DMRG {
 			{
 				Eigen::MatrixXd result(mat.rows() * identitySize, mat.cols() * identitySize);
 
-				for (int i = 0; i < mat.rows(); ++i)
-					for (int j = 0; j < mat.cols(); ++j)
+				for (Eigen::Index i = 0; i < mat.rows(); ++i)
+					for (Eigen::Index j = 0; j < mat.cols(); ++j)
 						result.block(i * identitySize, j * identitySize, identitySize, identitySize) = mat(i, j) * Eigen::MatrixXd::Identity(identitySize, identitySize);
 
 				return result;

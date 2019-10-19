@@ -18,8 +18,8 @@ namespace DMRG {
 
 			// first construct the coefficients matrix
 
-			for (unsigned int i = 0; i < EnvBasisSize; ++i)
-				for (unsigned int j = 0; j < SysBasisSize; ++j)
+			for (size_t i = 0; i < EnvBasisSize; ++i)
+				for (size_t j = 0; j < SysBasisSize; ++j)
 					c(i, j) = GroundState(i * SysBasisSize + j);
 
 			//trace out environment
