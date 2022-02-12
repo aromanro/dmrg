@@ -1,6 +1,7 @@
-
 # dmrg
 A simple Density Matrix Renormalization Group program
+
+[![CodeFactor](https://www.codefactor.io/repository/github/aromanro/dmrg/badge/master)](https://www.codefactor.io/repository/github/aromanro/dmrg/overview/master)
 
 Description is on Computational Physics blog: https://compphys.go.ro/density-matrix-renormalization-group/
 
