@@ -203,8 +203,10 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="Chart.h" />
+    <ClInclude Include="ChartAxis.h" />
     <ClInclude Include="ChartPropertyPage.h" />
     <ClInclude Include="ComputationThread.h" />
+    <ClInclude Include="DataSets.h" />
     <ClInclude Include="DensityMatrix.h" />
     <ClInclude Include="DiagonalizableOperator.h" />
     <ClInclude Include="dmrg.h" />
@@ -234,8 +236,10 @@
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClCompile Include="Chart.cpp" />
+    <ClCompile Include="ChartAxis.cpp" />
     <ClCompile Include="ChartPropertyPage.cpp" />
     <ClCompile Include="ComputationThread.cpp" />
+    <ClCompile Include="DataSets.cpp" />
     <ClCompile Include="DensityMatrix.cpp" />
     <ClCompile Include="DiagonalizableOperator.cpp" />
     <ClCompile Include="dmrg.cpp" />
