@@ -16,7 +16,6 @@ CHeisenbergPropertyPage::CHeisenbergPropertyPage()
 , Jz(theApp.options.Jz)
 , Jxy(theApp.options.Jxy)
 {
-
 }
 
 CHeisenbergPropertyPage::~CHeisenbergPropertyPage()

@@ -21,7 +21,6 @@ namespace DMRG {
 		{
 		public:
 			SzOneHalf(unsigned int size = 2);
-
 		};
 
 
@@ -29,7 +28,6 @@ namespace DMRG {
 		{
 		public:
 			SplusOneHalf(unsigned int size = 2);
-
 		};
 
 
@@ -37,7 +35,6 @@ namespace DMRG {
 		{
 		public:
 			SzOne(unsigned int size = 3);
-
 		};
 
 
@@ -45,7 +42,6 @@ namespace DMRG {
 		{
 		public:
 			SplusOne(unsigned int size = 3);
-
 		};
 
 	}

@@ -40,7 +40,6 @@ CdmrgView::CdmrgView()
 : timer(NULL)
 {
 	// TODO: add construction code here
-
 }
 
 CdmrgView::~CdmrgView()
@@ -201,9 +200,7 @@ void CdmrgView::OnTimer(UINT_PTR nIDEvent)
 
 		EndWaitCursor();
 		Invalidate();
-	}
-
-	
+	}	
 }
 
 

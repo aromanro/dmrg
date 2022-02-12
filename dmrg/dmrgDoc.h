@@ -21,12 +21,8 @@ protected: // create from serialization only
 // Attributes
 public:
 	Chart m_Chart;
-
 // Operations
-public:
-
 // Overrides
-public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 #ifdef SHARED_HANDLERS

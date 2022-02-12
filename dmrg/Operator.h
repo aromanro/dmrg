@@ -56,7 +56,6 @@ namespace DMRG {
 
 				return result;
 			}
-
 		};
 	
 	}

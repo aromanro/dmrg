@@ -13,15 +13,10 @@ protected: // create from serialization only
 	CMainFrame();
 	DECLARE_DYNCREATE(CMainFrame)
 
+public:
 // Attributes
-public:
-
 // Operations
-public:
-
 protected:
-
-
 // Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -52,7 +47,6 @@ protected:
 
 public:
 	CdmrgDoc* GetDocument();
-
 
 	afx_msg void OnViewOptions();
 	afx_msg void OnFileCalculate();
