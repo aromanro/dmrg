@@ -150,9 +150,7 @@ void CdmrgDoc::Dump(CDumpContext& dc) const
 
 bool CdmrgDoc::IsFinished()
 {
-	if (!thread || thread->terminated) return true;
-
-	return false;
+	return !thread || thread->terminated;
 }
 
 

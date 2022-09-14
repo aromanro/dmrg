@@ -71,7 +71,7 @@ void CDmrgPropertyPage::ApplyValues()
 	theApp.options.states = states;
 	theApp.options.sweeps = sweeps;
 
-	theApp.options.calculateEnergyGap = (1 == calcEnergyGap ? true : false);
+	theApp.options.calculateEnergyGap = 1 == calcEnergyGap;
 	theApp.options.nrStates = nrStates;
 
 	theApp.options.Save();

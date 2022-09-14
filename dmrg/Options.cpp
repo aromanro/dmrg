@@ -58,7 +58,7 @@ void Options::Load()
 	Jz = GetDouble(L"Jz", 1.);
 	Jxy = GetDouble(L"Jxy", 1.);
 
-	calculateEnergyGap = (1 == theApp.GetProfileInt(L"options", L"calculateEnergyGap", 0) ? true : false);
+	calculateEnergyGap = 1 == theApp.GetProfileInt(L"options", L"calculateEnergyGap", 0);
 
 	nrStates = theApp.GetProfileInt(L"options", L"nrStates", 1);
 }
