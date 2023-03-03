@@ -28,7 +28,7 @@ namespace DMRG {
 			Operators::Hamiltonian interactionHamiltonian;
 
 			interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(environmentBlock->SzForBoundarySite.matrix, systemBlock->SzForBoundarySite.matrix) +
-				1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix, systemBlock->SplusForBoundarySite.matrix.adjoint()) +
+				0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix, systemBlock->SplusForBoundarySite.matrix.adjoint()) +
 					Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix.adjoint(), systemBlock->SplusForBoundarySite.matrix));
 
 			return interactionHamiltonian;

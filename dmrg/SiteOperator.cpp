@@ -21,8 +21,8 @@ namespace DMRG {
 		{
 			const int subsize = size / 2;
 
-			matrix.block(0, 0, subsize, subsize) = 1. / 2. * Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(subsize, subsize, subsize, subsize) = -1. / 2. * Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(0, 0, subsize, subsize) = 0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(subsize, subsize, subsize, subsize) = -0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
 		}
 
 

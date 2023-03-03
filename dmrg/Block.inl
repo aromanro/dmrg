@@ -26,13 +26,13 @@ namespace DMRG {
 			if (left)
 			{
 				interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(SzForNewSite.matrix, SzForBoundarySite.matrix) +
-					1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForNewSite.matrix, SplusForBoundarySite.matrix.adjoint()) +
+					0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForNewSite.matrix, SplusForBoundarySite.matrix.adjoint()) +
 						Operators::Operator::KroneckerProduct(SplusForNewSite.matrix.adjoint(), SplusForBoundarySite.matrix));
 			}
 			else
 			{
 				interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(SzForBoundarySite.matrix, SzForNewSite.matrix) +
-					1. / 2. * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix, SplusForNewSite.matrix.adjoint()) +
+					0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix, SplusForNewSite.matrix.adjoint()) +
 						Operators::Operator::KroneckerProduct(SplusForBoundarySite.matrix.adjoint(), SplusForNewSite.matrix));
 			}
 

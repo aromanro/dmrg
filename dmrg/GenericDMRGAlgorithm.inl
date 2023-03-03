@@ -458,12 +458,14 @@ namespace DMRG {
 				v2 = hamiltonian.matrix * v1; // |v2> = H |v1>
 				alpha(i) = v1.adjoint() * v2;  // alpha = <v1|v2>
 				v2 -= alpha(i) * v1 + beta(i) * v0;  // now |v2> =  H |v1> - <v1|v2>|v1> - <v0|v1>|v0>
-				beta(i + 1ULL) = v2.norm();
-				v2 /= beta(i + 1ULL); // normalize it
+
+				int ip1 = i + 1;
+				beta(ip1) = v2.norm();
+				v2 /= beta(ip1); // normalize it
 
 				// now v2 is orthonormal on both v1 and v0
 
-				if (getEigen) groundState += v2 * Hmatrix(i + 1ULL, 0);
+				if (getEigen) groundState += v2 * Hmatrix(ip1, 0);
 
 				v0 = v1;
 				v1 = v2;
