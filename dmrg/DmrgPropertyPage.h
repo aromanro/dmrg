@@ -9,14 +9,14 @@ class CDmrgPropertyPage : public CMFCPropertyPage
 
 public:
 	CDmrgPropertyPage();
-	virtual ~CDmrgPropertyPage();
+	~CDmrgPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_PROPPAGE_DMRG };
 #endif
 
-protected:
+private:
 	int model;
 	int sites;
 	int states;
@@ -27,12 +27,12 @@ protected:
 
 	CEdit nrStatesEdit;
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
-public:
+
 	void ApplyValues();
-	virtual BOOL OnApply();
+	BOOL OnApply() override;
 	afx_msg void OnBnClickedRadio1();
 	afx_msg void OnBnClickedRadio2();
 	afx_msg void OnEnChangeEdit1();
@@ -40,5 +40,5 @@ public:
 	afx_msg void OnEnChangeEdit3();
 	afx_msg void OnBnClickedCheck1();
 	afx_msg void OnEnChangeEdit5();
-	virtual BOOL OnInitDialog();
+	BOOL OnInitDialog() override;
 };

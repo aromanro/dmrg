@@ -10,14 +10,14 @@ class CChartPropertyPage : public CMFCPropertyPage
 
 public:
 	CChartPropertyPage();
-	virtual ~CChartPropertyPage();
+	~CChartPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_PROPPAGE_CHART };
 #endif
 
-protected:
+private:
 	int bigTicksX;
 	int bigTicksY;
 	int smallTicksX;
@@ -29,12 +29,12 @@ protected:
 	CNumberEdit minEnergyEdit;
 	CNumberEdit maxEnergyEdit;
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
-public:
+
 	void ApplyValues();
-	virtual BOOL OnApply();
+	BOOL OnApply() override;
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnEnChangeEdit3();
 	afx_msg void OnEnChangeEdit2();

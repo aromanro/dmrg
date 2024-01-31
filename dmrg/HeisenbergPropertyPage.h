@@ -10,27 +10,27 @@ class CHeisenbergPropertyPage : public CMFCPropertyPage
 
 public:
 	CHeisenbergPropertyPage();
-	virtual ~CHeisenbergPropertyPage();
+	~CHeisenbergPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_PROPPAGE_HEISENBERG };
 #endif
 
-protected:
+private:
 	DECLARE_MESSAGE_MAP()
+
+	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnEnChangeEdit2();
+	void ApplyValues();
+	void DoDataExchange(CDataExchange* pDX) override;
+	BOOL OnApply() override;
 
 	CNumberEdit jzEdit;
 	CNumberEdit jxyEdit;
 
-public:
-	afx_msg void OnEnChangeEdit1();
-	afx_msg void OnEnChangeEdit2();
-	void ApplyValues();
-	virtual void DoDataExchange(CDataExchange* pDX);
 	double Jz;
 	double Jxy;
-	virtual BOOL OnApply();
 };
 
 

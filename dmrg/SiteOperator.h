@@ -12,7 +12,7 @@ namespace DMRG {
 		{
 		public:
 			SiteOperator(unsigned int size = 2, bool extendChangeSign = false);
-			virtual ~SiteOperator();
+			~SiteOperator() override;
 		};
 
 

@@ -26,29 +26,24 @@ class CdmrgApp : public CWinAppEx
 public:
 	CdmrgApp();
 
-
 // Overrides
-public:
-	virtual BOOL InitInstance();
-
+	BOOL InitInstance() override;
+	void PreLoadState() override;
+	void LoadCustomState() override;
+	void SaveCustomState() override;
 // Implementation
 
-private:
-	ULONG_PTR gdiplusToken;
-
-public:
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
 
 	Options options;
 
-	virtual void PreLoadState();
-	virtual void LoadCustomState();
-	virtual void SaveCustomState();
-
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
-	virtual int ExitInstance();
+	int ExitInstance() override;
+
+private:
+	ULONG_PTR gdiplusToken;
 };
 
 extern CdmrgApp theApp;
