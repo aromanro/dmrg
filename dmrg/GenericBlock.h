@@ -9,8 +9,7 @@ namespace DMRG {
 	{
 	public:
 		GenericBlock(bool Left = true);
-		virtual ~GenericBlock();
-
+		virtual ~GenericBlock() = default;
 
 		int length;
 		bool left;

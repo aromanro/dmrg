@@ -22,8 +22,6 @@ namespace DMRG {
 			HeisenbergDMRGAlgorithm(double Jz = 1., double Jxy = 1., unsigned int maxstates = 10);
 
 		public:
-			virtual ~HeisenbergDMRGAlgorithm();
-
 			virtual void ClearInit();
 		};
 	}

@@ -10,11 +10,6 @@ namespace DMRG {
 		{
 		}
 
-
-		DiagonalizableOperator::~DiagonalizableOperator()
-		{
-		}
-
 		void DiagonalizableOperator::Diagonalize()
 		{
 			solver.compute(matrix);

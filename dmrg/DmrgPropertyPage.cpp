@@ -24,10 +24,6 @@ CDmrgPropertyPage::CDmrgPropertyPage()
 	nrStates = theApp.options.nrStates;
 }
 
-CDmrgPropertyPage::~CDmrgPropertyPage()
-{
-}
-
 void CDmrgPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CMFCPropertyPage::DoDataExchange(pDX);

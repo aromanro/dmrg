@@ -34,17 +34,6 @@ BEGIN_MESSAGE_MAP(CdmrgView, CView)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
-// CdmrgView construction/destruction
-
-CdmrgView::CdmrgView()
-: timer(NULL)
-{
-	// TODO: add construction code here
-}
-
-CdmrgView::~CdmrgView()
-{
-}
 
 BOOL CdmrgView::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -206,6 +195,6 @@ void CdmrgView::OnTimer(UINT_PTR nIDEvent)
 
 void CdmrgView::StartTimer()
 {
-	if (!timer) timer = SetTimer(1, 1000, NULL);
+	if (!timer) timer = SetTimer(1, 1000, nullptr);
 	BeginWaitCursor();
 }

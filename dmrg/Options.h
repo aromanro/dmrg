@@ -3,8 +3,6 @@ class Options
 {
 public:
 	Options();
-	~Options();
-
 
 	int model;
 	int sites;
@@ -27,7 +25,8 @@ public:
 
 	void Load();
 	void Save();
-protected:
+
+private:
 	static double GetDouble(LPCTSTR param, double defval);
 };
 

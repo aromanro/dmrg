@@ -11,11 +11,6 @@ namespace DMRG {
 		{
 		}
 
-
-		SiteOperator::~SiteOperator()
-		{
-		}
-
 		SzOneHalf::SzOneHalf(unsigned int size)
 			: SiteOperator(size, false)
 		{

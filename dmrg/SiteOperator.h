@@ -12,9 +12,7 @@ namespace DMRG {
 		{
 		public:
 			SiteOperator(unsigned int size = 2, bool extendChangeSign = false);
-			~SiteOperator() override;
 		};
-
 
 
 		class SzOneHalf : public SiteOperator

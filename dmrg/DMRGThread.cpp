@@ -11,12 +11,6 @@ template<class Algorithm> DMRGThread<Algorithm>::DMRGThread(int sites, double Jz
 	dmrg.nrStates = nrExcitedStates;
 }
 
-
-template<class Algorithm> DMRGThread<Algorithm>::~DMRGThread()
-{
-}
-
-
 template<class Algorithm> void DMRGThread<Algorithm>::Calculate()
 {
 	result = dmrg.CalculateFinite(m_Sites, m_Sweeps);

@@ -6,14 +6,16 @@
 class ComputationThread
 {
 public:
-	std::atomic_bool terminated;
-	double result;
-	double gapResult;
+	virtual ~ComputationThread() = default;
+
+	std::atomic_bool terminated{false};
+	double result = std::numeric_limits<double>::infinity();
+	double gapResult = 0;
 	
 	void Start();
-	virtual ~ComputationThread();
+
 protected:
-	ComputationThread();
+	ComputationThread() = default;
 
 	virtual void Calculate() = 0;
 };

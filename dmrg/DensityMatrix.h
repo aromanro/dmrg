@@ -9,7 +9,6 @@ namespace DMRG {
 		{
 		public:
 			DensityMatrix(const Eigen::VectorXd& GroundState, unsigned int SysBasisSize, unsigned int EnvBasisSize, bool left = true);
-			virtual ~DensityMatrix();
 		};
 
 	}

@@ -8,11 +8,11 @@
 class CdmrgView : public CView
 {
 protected: // create from serialization only
-	CdmrgView();
+	CdmrgView() = default;
 	DECLARE_DYNCREATE(CdmrgView)
 
 // Attributes
-	UINT_PTR timer;
+	UINT_PTR timer = 0;
 public:
 	CdmrgDoc* GetDocument() const;
 
@@ -21,7 +21,6 @@ public:
 
 
 // Implementation
-	~CdmrgView() override;
 #ifdef _DEBUG
 	void AssertValid() const override;
 	void Dump(CDumpContext& dc) const override;
@@ -41,7 +40,7 @@ private:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
 
-	void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL) override;
+	void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = nullptr) override;
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnDestroy();

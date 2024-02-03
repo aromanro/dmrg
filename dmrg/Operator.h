@@ -16,7 +16,7 @@ namespace DMRG {
 			// extendChangeSign should be true for fermionic operators (not implemented yet)
 			// false for bosonic operators
 			Operator(unsigned int size = 2, bool extendChangeSign = false);
-			virtual ~Operator();
+			virtual ~Operator() = default;
 
 			Eigen::MatrixXd matrix;
 
@@ -34,7 +34,6 @@ namespace DMRG {
 
 				return result;
 			}
-
 
 			inline static Eigen::MatrixXd KroneckerProductWithIdentity(const Eigen::MatrixXd& mat, int identitySize)
 			{

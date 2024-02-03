@@ -29,10 +29,6 @@ CChartPropertyPage::CChartPropertyPage()
 	maxEnergy = theApp.options.maxEnergy;
 }
 
-CChartPropertyPage::~CChartPropertyPage()
-{
-}
-
 void CChartPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);

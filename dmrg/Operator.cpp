@@ -12,12 +12,6 @@ namespace DMRG {
 			matrix = Eigen::MatrixXd::Zero(size, size);
 		}
 
-
-		Operator::~Operator()
-		{
-		}
-
-
 		void Operator::Extend(bool left)
 		{
 			if (left)

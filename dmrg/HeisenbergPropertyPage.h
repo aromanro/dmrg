@@ -10,7 +10,6 @@ class CHeisenbergPropertyPage : public CMFCPropertyPage
 
 public:
 	CHeisenbergPropertyPage();
-	~CHeisenbergPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

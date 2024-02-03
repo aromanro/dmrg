@@ -14,11 +14,6 @@ namespace DMRG {
 		{
 		}
 
-
-		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::~HeisenbergBlock()
-		{
-		}
-
 		template<class SiteHamiltonianType, class SzType, class SplusType> Operators::Hamiltonian HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::GetInteractionHamiltonian() const
 		{
 			Operators::Hamiltonian interactionHamiltonian(hamiltonian.GetSingleSiteSize());

@@ -9,7 +9,6 @@ class CDmrgPropertyPage : public CMFCPropertyPage
 
 public:
 	CDmrgPropertyPage();
-	~CDmrgPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

@@ -38,11 +38,5 @@ namespace DMRG {
 			// that is, \rho = c^\dagger * c 
 		}
 
-
-		DensityMatrix::~DensityMatrix()
-		{
-		}
-
-
 	}
 }

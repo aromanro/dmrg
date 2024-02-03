@@ -18,11 +18,6 @@ CHeisenbergPropertyPage::CHeisenbergPropertyPage()
 {
 }
 
-CHeisenbergPropertyPage::~CHeisenbergPropertyPage()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CHeisenbergPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT1, &CHeisenbergPropertyPage::OnEnChangeEdit1)
 	ON_EN_CHANGE(IDC_EDIT2, &CHeisenbergPropertyPage::OnEnChangeEdit2)

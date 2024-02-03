@@ -9,11 +9,6 @@ namespace DMRG {
 	{
 	}
 
-
-	template<class SiteHamiltonianType> GenericBlock<SiteHamiltonianType>::~GenericBlock()
-	{
-	}
-
 	template<class SiteHamiltonianType> void GenericBlock<SiteHamiltonianType>::Extend()
 	{	
 		if (0 != length)

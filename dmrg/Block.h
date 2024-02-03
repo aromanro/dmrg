@@ -11,7 +11,6 @@ namespace DMRG {
 		{
 		public:
 			HeisenbergBlock(bool Left = true);
-			virtual ~HeisenbergBlock();
 
 			SzType SzForBoundarySite;
 			SplusType SplusForBoundarySite;

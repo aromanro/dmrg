@@ -10,11 +10,6 @@ namespace DMRG {
 		{
 		}
 
-
-		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::~HeisenbergDMRGAlgorithm()
-		{
-		}
-
 		template<class SiteHamiltonianType, class SzType, class SplusType> void HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::ClearInit()
 		{
 			GenericDMRGAlgorithm<SiteHamiltonianType, HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>>::ClearInit();

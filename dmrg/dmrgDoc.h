@@ -42,7 +42,7 @@ public:
 	void Dump(CDumpContext& dc) const override;
 #endif
 
-protected:
+private:
 	ComputationThread *thread;
 	Options options;
 
