@@ -14,7 +14,8 @@ namespace DMRG {
 			virtual Operators::Hamiltonian GetInteractionHamiltonian() const;
 			virtual void TransformOperators(const Eigen::MatrixXd& U, const Eigen::MatrixXd& Ut, bool left = true);
 
-			//typedef typename HeisenbergBlock<SiteHamiltonianType, SzType, SplusType> BlockType;
+			using BlockType = typename HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>;
+			using BaseClass = typename GenericDMRGAlgorithm<SiteHamiltonianType, BlockType>;
 
 			double m_Jz;
 			double m_Jxy;
