@@ -1,6 +1,7 @@
 #pragma once
 
-
+#undef min
+#undef max
 #include <Eigen\eigen>
 
 namespace DMRG {
