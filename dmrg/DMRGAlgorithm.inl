@@ -14,17 +14,17 @@ namespace DMRG {
 		{
 			BaseClass::ClearInit();
 
-			systemBlock->m_Jz = environmentBlock->m_Jz = m_Jz;
-			systemBlock->m_Jxy = environmentBlock->m_Jxy = m_Jxy;
+			BaseClass::systemBlock->m_Jz = BaseClass::environmentBlock->m_Jz = m_Jz;
+			BaseClass::systemBlock->m_Jxy = BaseClass::environmentBlock->m_Jxy = m_Jxy;
 		}
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> Operators::Hamiltonian HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::GetInteractionHamiltonian() const
 		{
 			Operators::Hamiltonian interactionHamiltonian;
 
-			interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(environmentBlock->SzForBoundarySite.matrix, systemBlock->SzForBoundarySite.matrix) +
-				0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix, systemBlock->SplusForBoundarySite.matrix.adjoint()) +
-					Operators::Operator::KroneckerProduct(environmentBlock->SplusForBoundarySite.matrix.adjoint(), systemBlock->SplusForBoundarySite.matrix));
+			interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(BaseClass::environmentBlock->SzForBoundarySite.matrix, BaseClass::systemBlock->SzForBoundarySite.matrix) +
+				0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(BaseClass::environmentBlock->SplusForBoundarySite.matrix, BaseClass::systemBlock->SplusForBoundarySite.matrix.adjoint()) +
+					Operators::Operator::KroneckerProduct(BaseClass::environmentBlock->SplusForBoundarySite.matrix.adjoint(), BaseClass::systemBlock->SplusForBoundarySite.matrix));
 
 			return interactionHamiltonian;
 		}
@@ -32,17 +32,17 @@ namespace DMRG {
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> void HeisenbergDMRGAlgorithm<SiteHamiltonianType, SzType, SplusType>::TransformOperators(const Eigen::MatrixXd& U, const Eigen::MatrixXd& Ut, bool left)
 		{
-			GenericDMRGAlgorithm::TransformOperators(U, Ut, left); // takes care of the system block Hamiltonian
+			BaseClass::TransformOperators(U, Ut, left); // takes care of the system block Hamiltonian
 
 			if (left)
 			{
-				systemBlock->SplusForBoundarySite.matrix = U * systemBlock->SplusForBoundarySite.matrix * Ut;
-				systemBlock->SzForBoundarySite.matrix = U * systemBlock->SzForBoundarySite.matrix * Ut;
+				BaseClass::systemBlock->SplusForBoundarySite.matrix = U * BaseClass::systemBlock->SplusForBoundarySite.matrix * Ut;
+				BaseClass::systemBlock->SzForBoundarySite.matrix = U * BaseClass::systemBlock->SzForBoundarySite.matrix * Ut;
 			}
 			else
 			{
-				environmentBlock->SplusForBoundarySite.matrix = U * environmentBlock->SplusForBoundarySite.matrix * Ut;
-				environmentBlock->SzForBoundarySite.matrix = U * environmentBlock->SzForBoundarySite.matrix * Ut;
+				BaseClass::environmentBlock->SplusForBoundarySite.matrix = U * BaseClass::environmentBlock->SplusForBoundarySite.matrix * Ut;
+				BaseClass::environmentBlock->SzForBoundarySite.matrix = U * BaseClass::environmentBlock->SzForBoundarySite.matrix * Ut;
 			}
 		}
 

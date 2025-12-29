@@ -11,6 +11,14 @@ It uses Eigen library for matrices.
 
 Currenly only Heisenberg chains are implemented (both spin 1/2 and 1).
 
+### TOOLS
+
+The project compiles on Windows with Visual Studio 2026 (the code can be compiled with older versions starting with VS 2015, but it's currently maintained with VS 2026 and C++ 17 or higher).
+
+### LIBRARIES
+
+Besides mfc and other typical VC++ runtime libraries, the program uses GDI+ for drawing.
+
 ### PROGRAM IN ACTION
 
 [![Program video](https://img.youtube.com/vi/LHnebbE_XP4/0.jpg)](https://youtu.be/LHnebbE_XP4)

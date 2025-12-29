@@ -9,16 +9,16 @@ namespace DMRG {
 		template<class SiteHamiltonianType, class SzType, class SplusType> SplusType HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::SplusForNewSite;
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::HeisenbergBlock(bool Left)
-			: GenericBlock(Left)
+			: GenericBlock<SiteHamiltonianType>(Left)
 			, m_Jz(1.), m_Jxy(1.)
 		{
 		}
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> Operators::Hamiltonian HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::GetInteractionHamiltonian() const
 		{
-			Operators::Hamiltonian interactionHamiltonian(hamiltonian.GetSingleSiteSize());
+			Operators::Hamiltonian interactionHamiltonian(GenericBlock<SiteHamiltonianType>::hamiltonian.GetSingleSiteSize());
 
-			if (left)
+			if (GenericBlock<SiteHamiltonianType>::left)
 			{
 				interactionHamiltonian.matrix = m_Jz * Operators::Operator::KroneckerProduct(SzForNewSite.matrix, SzForBoundarySite.matrix) +
 					0.5 * m_Jxy * (Operators::Operator::KroneckerProduct(SplusForNewSite.matrix, SplusForBoundarySite.matrix.adjoint()) +
@@ -36,11 +36,11 @@ namespace DMRG {
 
 		template<class SiteHamiltonianType, class SzType, class SplusType> void HeisenbergBlock<SiteHamiltonianType, SzType, SplusType>::Extend()
 		{
-			const int BasisSize = static_cast<int>(hamiltonian.matrix.cols());
+			const int BasisSize = static_cast<int>(GenericBlock<SiteHamiltonianType>::hamiltonian.matrix.cols());
 
-			GenericBlock::Extend();
+			GenericBlock<SiteHamiltonianType>::Extend();
 
-			if (left)
+			if (GenericBlock<SiteHamiltonianType>::left)
 			{
 				SplusForBoundarySite.matrix = Operators::Operator::KroneckerProductWithIdentity(SplusForNewSite.matrix, BasisSize);
 				SzForBoundarySite.matrix = Operators::Operator::KroneckerProductWithIdentity(SzForNewSite.matrix, BasisSize);
