@@ -16,8 +16,8 @@ namespace DMRG {
 		{
 			const int subsize = size / 2;
 
-			matrix.block(0, 0, subsize, subsize) = 0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(subsize, subsize, subsize, subsize) = -0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.topLeftCorner(subsize, subsize) = 0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.bottomRightCorner(subsize, subsize) = -0.5 * Eigen::MatrixXd::Identity(subsize, subsize);
 		}
 
 
@@ -26,7 +26,7 @@ namespace DMRG {
 		{
 			const int subsize = size / 2;
 
-			matrix.block(0, subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.topRightCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
 		}
 
 		SzOne::SzOne(unsigned int size)
@@ -34,8 +34,8 @@ namespace DMRG {
 		{
 			const int subsize = size / 3;
 
-			matrix.block(0, 0, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(2ULL * subsize, 2ULL * subsize, subsize, subsize) = -Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.topLeftCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.bottomRightCorner(subsize, subsize) = -Eigen::MatrixXd::Identity(subsize, subsize);
 		}
 
 
@@ -44,8 +44,8 @@ namespace DMRG {
 		{
 			const int subsize = size / 3;
 
-			matrix.block(0, subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.block(subsize, 2ULL * subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.topRightCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.bottomLeftCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
 
 			matrix *= sqrt(2.);
 		}
