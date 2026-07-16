@@ -44,8 +44,8 @@ namespace DMRG {
 		{
 			const int subsize = size / 3;
 
-			matrix.topRightCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
-			matrix.bottomLeftCorner(subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(0, subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
+			matrix.block(subsize, 2 * subsize, subsize, subsize) = Eigen::MatrixXd::Identity(subsize, subsize);
 
 			matrix *= sqrt(2.);
 		}
