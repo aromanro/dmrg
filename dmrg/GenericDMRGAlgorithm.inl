@@ -188,7 +188,7 @@ namespace DMRG {
 			for (unsigned int s = 1; s <= nrStates; ++s)
 			{		
 				// shift the Hamiltonian state up with 2. * abs(GroundStateEnergy), this should be enough
-				superblockHamiltonian.matrix += 2. * abs(GroundStateEnergy) * OldState * OldState.adjoint();
+				superblockHamiltonian.matrix += 2. * abs(OldEnergy) * OldState * OldState.adjoint();
 				
 				// get the new ground state after shifting the old one up
 				Eigen::VectorXd ExcitedState;
