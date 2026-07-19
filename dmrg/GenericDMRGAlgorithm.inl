@@ -167,7 +167,6 @@ namespace DMRG {
 
 		eigenvals = densityMatrix.eigenvalues(); // save them to be able to calculate 'measurements' for the ground state
 
-
 		// *****************************************************************************************************************
 		// *****************************************************************************************************************
 		// code for calculating the energy gap, ignore it if you are only interested in the ground state!!!!!!
@@ -187,18 +186,18 @@ namespace DMRG {
 
 			for (unsigned int s = 1; s <= nrStates; ++s)
 			{		
-				// shift the Hamiltonian state up with 2. * abs(GroundStateEnergy), this should be enough
-				superblockHamiltonian.matrix += 2. * abs(OldEnergy) * OldState * OldState.adjoint();
+				// shift the Hamiltonian state up with abs(GroundStateEnergy), this should be enough
+				superblockHamiltonian.matrix += abs(GroundStateEnergy) * OldState * OldState.adjoint();
 				
 				// get the new ground state after shifting the old one up
 				Eigen::VectorXd ExcitedState;
 				const double ExcitedEnergy = LanczosGroundState(superblockHamiltonian, ExcitedState);
 
-				EnergyGap = ExcitedEnergy - OldEnergy;
+				EnergyGap = ExcitedEnergy - GroundStateEnergy;
 
 				// accumulate the density matrix for this state into the algorithm density matrix
 				densityMatrix.matrix += Operators::DensityMatrix(ExcitedState, SysBasisSize, EnvBasisSize).matrix;
-				
+
 				OldState = ExcitedState;
 				OldEnergy = ExcitedEnergy;
 			}
@@ -215,10 +214,8 @@ namespace DMRG {
 		// *****************************************************************************************************************
 		// *****************************************************************************************************************
 
-
 		const Eigen::MatrixXd& eigenV = densityMatrix.eigenvectors();
 		const Eigen::VectorXd& eigenv = densityMatrix.eigenvalues();  // for calculating the truncation error
-
 
 		// now pick the ones that have the biggest values
 		// they are ordered with the lowest eigenvalue first
@@ -233,7 +230,7 @@ namespace DMRG {
 		for (unsigned int i = 0; i < keepStates; ++i)
 		{
 			int index = numStates - i - 1;
-			
+
 			Ut.col(i) = eigenV.col(index);
 			truncationError -= eigenv(index);
 		}
