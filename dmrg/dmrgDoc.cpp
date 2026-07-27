@@ -39,7 +39,7 @@ CdmrgDoc::CdmrgDoc()
 	// TODO: add one-time construction code here
 	m_Chart.useSpline = false;
 	m_Chart.XAxisLabel = L"Site";
-	m_Chart.YAxisLabel = L"<S_i S_{i+1}>";
+	m_Chart.YAxisLabel = L"<h_i h_{i+1}>";
 
 	m_Chart.XAxisMin = 0;
 }
